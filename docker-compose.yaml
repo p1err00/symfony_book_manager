@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: symfony_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - symfony
+    depends_on:
+      - postgres
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: symfony_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      - symfony
+
+  postgres:
+    image: postgres:15
+    container_name: symfony_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: books
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - symfony
+
+networks:
+  symfony:
+
+volumes:
+  postgres_data:
