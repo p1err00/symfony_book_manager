@@ -14,19 +14,10 @@
         {% endblock %}
     </head>
     <body class=" bg-dark text-light">
-        
-        
-    {# Zone de contenu principale #}
-    <main class="container mt-4 mb-4">
-        {% block body %}{% endblock %}
-    </main>
 
-
-    {# Footer #}
-    <footer class="bg-light text-center text-muted py-4 mt-5">
-        <div class="container">
-            <p class="mb-0">&copy; {{ "now"|date("Y") }} - MonSite. Tous droits réservés.</p>
-        </div>
-    </footer>
+        {# Zone de contenu principale #}
+        <main class="container mt-4 mb-4">
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>

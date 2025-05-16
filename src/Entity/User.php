@@ -68,9 +68,9 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\Column(type="string", length="255")
+     * @ORM\Column(type="string", length="255", nullable="true")
      */
-    private $password;
+    private $password = null;
 
     // ➕ getters / setters
     public function getGoogleAccessToken(): ?string

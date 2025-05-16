@@ -85,7 +85,6 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
             $user = $this->registrationService->persist($resourceOwner);
         }
 
-
         // 5. Mettre à jour le token et sa date d'expiration dans l'entité User
         $user->setGoogleAccessToken($accessToken);
         $expiresInSeconds = $credentials->getExpires() ?: 3600; // fallback 1h
