@@ -5,11 +5,13 @@ namespace App\Entity;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -35,11 +37,40 @@ class User implements UserInterface
      */
     private $google_id;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $given_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $family_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $googleAccessToken = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    /**
+     * @ORM\Column(type="datetime", length=255, nullable=true)
+     */
     private $googleTokenExpiresAt = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+    /**
+     * @ORM\Column(type="string", length="255")
+     */
+    private $password;
 
     // ➕ getters / setters
     public function getGoogleAccessToken(): ?string
@@ -126,7 +157,13 @@ class User implements UserInterface
      */
     public function getPassword(): ?string
     {
-        return null;
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): self {
+        $this->password = $password;
+
+        return $this;
     }
 
     /**
@@ -156,6 +193,54 @@ class User implements UserInterface
     public function setGoogleId(?string $google_id): self
     {
         $this->google_id = $google_id;
+
+        return $this;
+    }
+
+    public function getGivenName(): ?string
+    {
+        return $this->given_name;
+    }
+
+    public function setGivenName(?string $given_name): self
+    {
+        $this->given_name = $given_name;
+
+        return $this;
+    }
+
+    public function getFamilyName(): ?string
+    {
+        return $this->family_name;
+    }
+
+    public function setFamilyName(?string $family_name): self
+    {
+        $this->family_name = $family_name;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

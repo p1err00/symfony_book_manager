@@ -1,11 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="text-center bg-primary">
-        <h1 class="display-4">Bienvenue sur mon site Symfony avec Bootstrap !</h1>
-        <p class="lead mt-3">Ceci est une page d'exemple avec un layout responsive.</p>
-        <p class="lead mt-3">werwer{{access_token}}</p>
+    {% include 'navbar/index.html.twig' %}
+    <div class="container text-center bg-dark pt-4">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="border mb-1">
+                    Mon super livre        
+                </div>
+            </div>
+            <div class="col-sm-4 mb-1">
+                <div class="border">
+                    Mon super livre        
+                </div>
+            </div>
+            <div class="col-sm-4 mb-1">
+                <div class="border">
+                    Mon super livre        
+                </div>
+            </div>
+            <div class="col-sm-4 mb-1">
+                <div class="border">
+                    Mon super livre        
+                </div>
+            </div>
+            <div class="col-sm-4 mb-1">
+                <div class="border">
+                    Mon super livre        
+                </div>
+            </div>
+            <div class="col-sm-4 mb-1">
+                <div class="border">
+                    Mon super livre        
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+                <div class="col-sm-4 mb-1">
+                    <div class="border">
+                        Mon super livre        
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-1">
+                    <div class="border">
+                        Mon super livre        
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-1">
+                    <div class="border">
+                        Mon super livre        
+                    </div>
+                </div>
+            </div>
     </div>
+
 {% endblock %}

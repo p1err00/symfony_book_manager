@@ -25,15 +25,20 @@ class RegistrationService
     {
         $user = new User();
 
+
+        if ($this->em->getRepository(User::class)->findOneBy(['email'=> $googleUser->getEmail()])) {
+            return $user;
+        }
+
+        $user->setGivenName($googleUser->getFirstName());
+        $user->setFamilyName($googleUser->getLastName());
+        $user->setPicture($googleUser->getAvatar());
         $user->setEmail($googleUser->getEmail());
         $user->setGoogleId($googleUser->getId());
         $user->setRoles(['ROLE_USER']); // rôle par défaut
         $user->setGoogleAccessToken(null); // sera mis à jour plus tard
         $user->setGoogleTokenExpiresAt(null);
 
-        // Autres champs possibles :
-        // $user->setFullName($googleUser->getName());
-        // $user->setAvatarUrl($googleUser->getAvatar());
 
         $this->em->persist($user);
         $this->em->flush();

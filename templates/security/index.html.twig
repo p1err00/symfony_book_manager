@@ -1,20 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="login_form_wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<!-- login_wrapper -->
-						<div class="login_wrapper">
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-									<a href="{{ path('auth_oauth_connect', {service: 'google'})}}" class="btn btn-primary google-plus"> Login  with Google <i class="fa fa-google-plus"></i> </a>
-								</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 border mx-auto">
+					<!-- login_wrapper -->
+						<div class="col">
+							<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 m-2 mx-auto">
+								<a href="{{ path('auth_oauth_connect', {service: 'google'})}}" class="btn btn-primary google-plus"> Login  with Google <i class="fa fa-google-plus"></i> </a>
+							</div>
+
+							<h2>or</h2>
+
+							{{ form_start(form) }}
+							{{ form_row(form.email) }}
+							{{ form_row(form.password) }}
+							{{ form_end(form) }}
+							<div class="login_remember_box">
+								<label class="control control--checkbox">Remember me
+									<input type="checkbox">Esecuri
+									<span class="control__indicator"></span>
+								</label>
+								<a href="#" class="forget_password">
+									Forgot Password
+								</a>
+							</div>
+							<div class="login_btn_wrapper">
+								<a href="{{ path('auth_oauth_login') }}" class="btn btn-primary login_btn"> Login </a>
+							</div>
+							<div class="login_message">
+								<p>Don&rsquo;t have an account ? <a href="{{ path('app_register') }}"> Sign up </a> </p>
 							</div>
 						</div>
-						<!-- /.login_wrapper-->
-					</div>
+					<!-- /.login_wrapper-->
 				</div>
 			</div>
 		</div>

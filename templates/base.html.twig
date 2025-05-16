@@ -13,38 +13,20 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="text-bg-secondary">
+    <body class=" bg-dark text-light">
         
-        {# <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ path('app_home') }}">MonSite</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> #}
-
+        
     {# Zone de contenu principale #}
-    <main class="container mt-4">
+    <main class="container mt-4 mb-4">
         {% block body %}{% endblock %}
     </main>
 
 
     {# Footer #}
-    {# <footer class="bg-light text-center text-muted py-4 mt-5">
+    <footer class="bg-light text-center text-muted py-4 mt-5">
         <div class="container">
             <p class="mb-0">&copy; {{ "now"|date("Y") }} - MonSite. Tous droits réservés.</p>
         </div>
     </footer>
-    </body> #}
+    </body>
 </html>

@@ -77,7 +77,6 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
 
         // 2. Récupérer les infos utilisateur Google
         $resourceOwner = $this->getRessourceOwnerFromCredentials($credentials);
-
         // 3. Chercher l'utilisateur en base via google_id ou email
         $user = $this->getUserFromResourceOwner($resourceOwner, $this->repository);
 
@@ -85,6 +84,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         if (null === $user) {
             $user = $this->registrationService->persist($resourceOwner);
         }
+
 
         // 5. Mettre à jour le token et sa date d'expiration dans l'entité User
         $user->setGoogleAccessToken($accessToken);
@@ -102,6 +102,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         }
         $session->set('google_access_token', $accessToken);
         $session->save();
+
         // 8. Retourner le Passport avec UserBadge
         return new SelfValidatingPassport(
             new UserBadge($user->getUserIdentifier()),
