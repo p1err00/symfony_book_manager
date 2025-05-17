@@ -19,9 +19,7 @@ class HomeController extends AbstractController
     public function index(RequestStack $requestStack, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-        // $request = $requestStack->getCurrentRequest();
-        // $session = $request->getSession();
-        // $accessToken = $session->get('google_access_token');
+        
         
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
